@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Heros(models.Model):
+class Heroes(models.Model):
     GENDER_MALE = 'male'
     GENDER_FEMALE = 'female'
     GENDER_OTHER = 'other'
