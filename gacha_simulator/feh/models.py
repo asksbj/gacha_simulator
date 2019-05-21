@@ -84,7 +84,8 @@ class Heroes(models.Model):
 
     name = models.CharField(max_length=64, default=None, null=True)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, default=None, null=True)
-    rarity = models.IntegerField(default=None, null=True)
+    rarity_low = models.IntegerField(default=None, null=True)
+    rarity_high = models.IntegerField(default=None, null=True)
     type = models.CharField(max_length=16, choices=TYPE_CHOICES, default=None, null=True)
     weapon_type = models.CharField(max_length=32, choices=WEAPON_CHOICES, default=None, null=True)
     move_type = models.CharField(max_length=16, choices=MOVE_CHOICES, default=None, null=True)
