@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gacha_simulator',
         'USER': 'root',
-        'PASSWORD': '1008319asksbj',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': 3306,
     }
