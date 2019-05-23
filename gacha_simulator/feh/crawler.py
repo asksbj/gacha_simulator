@@ -1,6 +1,6 @@
 import re
 
-from crawler.crawler import open_url
+from commons.crawler import open_url
 from .models import Heroes
 
 
