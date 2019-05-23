@@ -1,5 +1,8 @@
 import urllib.request
+import os
 import random
+
+from django.conf import settings
 
 
 def open_url(url, data=None):
@@ -16,7 +19,7 @@ def open_url(url, data=None):
 
     req = urllib.request.Request(url, data, header)
     response = urllib.request.urlopen(req)
-    html = response.read().decode('utf-8')
+    html = response.read()
     return html
 
 
@@ -25,3 +28,10 @@ def set_proxy_support(proxy_ip):
     opener = urllib.request.build_opener(proxy_support)
     urllib.request.install_opener(opener)
 
+
+def save_images(app_path, image_name, image_address):
+    filename = 'images/' + app_path + '/' + image_name
+    filename = os.path.join(settings.BASE_DIR, filename)
+    with open(filename, 'wb') as file:
+        img = open_url(image_address)
+        file.write(img)

@@ -1,6 +1,6 @@
 import re
 
-from commons.crawler import open_url
+from commons.crawler import open_url, save_images
 from .models import Heroes
 
 
@@ -8,20 +8,22 @@ def crawl_heroes():
     base_url = 'https://feheroes.gamepedia.com/'
 
     hero_list_url = base_url + 'List_of_Heroes'
-    hero_list_result = open_url(hero_list_url)
+    hero_list_result = open_url(hero_list_url).decode('utf-8')
 
-    hero_list_patten = re.compile(r'<td><a href="/([^"]+)" title="([^"]+)"><')
+    hero_list_patten = re.compile(r'<td><a href="/([^"]+)" title="([^"]+)"><img alt="([^"]+)" src="([^"]+)" ')
 
     items = hero_list_patten.findall(hero_list_result)
 
     for item in items:
         columns = {}
 
-        hero_url, hero_name = item
+        hero_url, hero_name, image_name, image_address = item
+
+        columns['image'] = image_name
 
         hero_url = base_url + hero_url
 
-        hero_result = open_url(hero_url)
+        hero_result = open_url(hero_url).decode('utf-8')
 
         columns['rarity_low'] = int(re.search(r'vertical-align:bottom">\d<img alt=', hero_result).group(0)[23:24])
         columns['rarity_high'] = 4 if columns['rarity_low'] <= 3 else 5
@@ -49,5 +51,13 @@ def crawl_heroes():
 
         print('Processing hero {}'.format(hero_name))
         Heroes.objects.update_or_create(name=hero_name, defaults=columns)
+
+        save_images('feh', image_name, image_address)
+
+
+
+
+
+
 
 
