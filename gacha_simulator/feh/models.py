@@ -110,3 +110,4 @@ class Heroes(models.Model):
     speed = models.IntegerField(default=None, null=True)
     defense = models.IntegerField(default=None, null=True)
     resistance = models.IntegerField(default=None, null=True)
+    image = models.CharField(max_length=128, default=None, null=True)
