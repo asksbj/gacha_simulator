@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fire Emblem Heroes</title>
+</head>
+<body>
+    <h1>Gacha Result</h1><br><br>
+    <table border="0">
+        <tr>
+            {% for image in images %}
+            <td style="width:200px;text-align: center;">
+                {% with '/feh/'|add:image as image_static %}
+                <img src="{% static image_static %}"  />
+                {% endwith %}
+            </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for hero in heroes %}
+            <td style="width:200px;text-align: center;">
+                {{hero}}
+            </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for star in rarities %}
+            <td style="width:200px;text-align: center;">
+                star: {{star}}
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
+
+</body>
+</html>

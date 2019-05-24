@@ -30,7 +30,7 @@ def set_proxy_support(proxy_ip):
 
 
 def save_images(app_path, image_name, image_address):
-    filename = 'images/' + app_path + '/' + image_name
+    filename = 'static/' + app_path + '/' + image_name
     filename = os.path.join(settings.BASE_DIR, filename)
     with open(filename, 'wb') as file:
         img = open_url(image_address)

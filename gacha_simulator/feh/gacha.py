@@ -3,7 +3,7 @@ from commons.gacha import gacha_rarity
 from .models import Heroes
 
 
-def feh_gacha(gacha_pool='common'):
+def feh_gacha(num=5, gacha_pool='common'):
     rarity_heroes = dict()
     rarity_map = dict()
 
@@ -16,7 +16,7 @@ def feh_gacha(gacha_pool='common'):
         rarity_map['4'] = 0.58
         rarity_map['5'] = 0.06
 
-        return gacha_rarity(rarity_heroes, rarity_map, 5)
+        return gacha_rarity(rarity_heroes, rarity_map, num)
 
 
 
