@@ -111,3 +111,7 @@ class Heroes(models.Model):
     defense = models.IntegerField(default=None, null=True)
     resistance = models.IntegerField(default=None, null=True)
     image = models.CharField(max_length=128, default=None, null=True)
+
+
+class Pools(models.Model):
+    name = models.CharField(max_length=128, default=None, null=True)
