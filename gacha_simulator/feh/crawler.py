@@ -19,7 +19,7 @@ def crawl_heroes():
 
         hero_url, hero_name, image_name, image_address = item
 
-        columns['image'] = image_name
+        columns['img'] = image_name
 
         hero_url = base_url + hero_url
 

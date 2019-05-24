@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='heroes',
-            name='image',
+            name='img',
             field=models.CharField(default=None, max_length=128, null=True),
         ),
     ]
