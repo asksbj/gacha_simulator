@@ -1,4 +1,5 @@
 import re
+import html
 
 from commons.crawler import open_url, save_images
 from .models import Heroes
@@ -19,7 +20,7 @@ def crawl_heroes():
 
         hero_url, hero_name, image_name, image_address = item
 
-        columns['img'] = image_name
+        columns['image'] = html.unescape(image_name)
 
         hero_url = base_url + hero_url
 
@@ -49,6 +50,7 @@ def crawl_heroes():
         columns['release_date'] = re.search(r'<time datetime="([^"]+)"', hero_result).group(0)[16:26]
         columns['description'] = re.search(r'vertical-align:bottom"> ([^<]+)</div', hero_result).group(0)[24:-5]
 
+        hero_name = html.unescape(hero_name)
         print('Processing hero {}'.format(hero_name))
         Heroes.objects.update_or_create(name=hero_name, defaults=columns)
 

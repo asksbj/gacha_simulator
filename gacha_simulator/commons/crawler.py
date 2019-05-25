@@ -19,8 +19,8 @@ def open_url(url, data=None):
 
     req = urllib.request.Request(url, data, header)
     response = urllib.request.urlopen(req)
-    html = response.read()
-    return html
+    html_centent = response.read()
+    return html_centent
 
 
 def set_proxy_support(proxy_ip):

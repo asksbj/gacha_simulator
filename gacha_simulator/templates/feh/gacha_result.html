@@ -11,7 +11,7 @@
         <tr>
             {% for image in images %}
             <td style="width:200px;text-align: center;">
-                {% with '/feh/image/'|add:image as image_static %}
+                {% with '/feh/img/'|add:image as image_static %}
                 <img src="{% static image_static %}"  />
                 {% endwith %}
             </td>
