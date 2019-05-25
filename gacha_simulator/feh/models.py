@@ -115,3 +115,10 @@ class Heroes(models.Model):
 
 class Pools(models.Model):
     name = models.CharField(max_length=128, default=None, null=True)
+    start_date = models.DateField(default=None, null=True)
+    end_date = models.DateField(default=None, null=True)
+    start5_focus = models.DecimalField(decimal_places=6, max_digits=18, default=None, null=True)
+    start5 = models.DecimalField(decimal_places=6, max_digits=18, default=None, null=True)
+    start4 = models.DecimalField(decimal_places=6, max_digits=18, default=None, null=True)
+    start3 = models.DecimalField(decimal_places=6, max_digits=18, default=None, null=True)
+    heroes = models.ManyToManyField(Heroes)
