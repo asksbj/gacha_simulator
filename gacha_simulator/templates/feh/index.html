@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,10 +7,19 @@
 </head>
 <body>
     <h1>Fire Emblem Heroes</h1><br>
-    <form action="{% url 'feh:gacha_result'%}" method="post" >
-          Number of Gachas: <input type="text" name="number">
-          <input type="submit"value="submit">
-          {%csrf_token%}
-    </form>
+    <h2>Gacha Pools:</h2><br>
+    {% for pool in pools %}
+    <a href = "{% url 'feh:gacha' pool_name=pool.url_name%}">
+        {% with '/feh/img/'|add:pool.image as pool_static %}
+        <img src="{% static pool_static %}" />
+        {% for hero in pool.heroes.all%}
+            {% with '/feh/img/'|add:hero.image as hero_static %}
+                <img src="{% static hero_static %}" />
+            {% endwith %}
+        {% endfor %}
+        {% endwith %}
+    </a><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<a href = "{% url 'feh:gacha' pool_name=pool.url_name%}">{{pool.name}}</a><br><br><br>
+    {% endfor %}
 </body>
 </html>

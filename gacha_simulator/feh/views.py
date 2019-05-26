@@ -1,16 +1,21 @@
 from django.shortcuts import render
 
-from .models import Heroes
+from .models import Heroes, Pools
 from .gacha import feh_gacha
 
 
 def index(request):
-    return render(request, 'feh/index.html')
+    pools = Pools.objects.all()
+    return render(request, 'feh/index.html', {'pools': pools})
+
+
+def gacha(request, pool_name=None):
+    pool = Pools.objects.get(url_name=pool_name)
+    return render(request, 'feh/gacha.html', {'pool': pool})
 
 
 def gacha_result(request):
     result = {}
-    print(request.POST)
     num = request.POST.get('number')
     rarities, heroes = feh_gacha(num=int(num))
     result['rarities'] = rarities

@@ -74,6 +74,7 @@ def crawl_pools():
         pool_url, pool_name, pool_image_name, pool_image_address = item
         pool_name = html.unescape(pool_name)
 
+        columns['url_name'] = html.unescape(pool_url)
         columns['image'] = html.unescape(pool_image_name)
 
         pool_url = BASE_URL + pool_url
