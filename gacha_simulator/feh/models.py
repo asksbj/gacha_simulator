@@ -115,6 +115,7 @@ class Heroes(models.Model):
 
 class Pools(models.Model):
     name = models.CharField(max_length=128, default=None, null=True)
+    url_name = models.CharField(max_length=128, default=None, null=True)
     image = models.CharField(max_length=128, default=None, null=True)
     start5_focus = models.DecimalField(decimal_places=6, max_digits=18, default=None, null=True)
     start5 = models.DecimalField(decimal_places=6, max_digits=18, default=None, null=True)
