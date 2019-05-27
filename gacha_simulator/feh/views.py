@@ -14,10 +14,12 @@ def gacha(request, pool_name=None):
     return render(request, 'feh/gacha.html', {'pool': pool})
 
 
-def gacha_result(request):
+def gacha_result(request, pool_name=None):
     result = {}
+    pool_name = pool_name
     num = request.POST.get('number')
-    rarities, heroes = feh_gacha(num=int(num))
+
+    rarities, heroes = feh_gacha(num=int(num), gacha_pool=pool_name)
     result['rarities'] = rarities
     result['heroes'] = heroes
 
@@ -27,5 +29,8 @@ def gacha_result(request):
         images.append(hero.image)
 
     result['images'] = images
+
+    result['pool'] = pool_name
+    result['number'] = num
 
     return render(request, 'feh/gacha_result.html', result)

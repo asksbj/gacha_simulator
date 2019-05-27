@@ -27,11 +27,29 @@
         <tr>
             {% for star in rarities %}
             <td style="width:200px;text-align: center;">
-                star: {{star}}
+                {{star}}{% with '/feh/img/'|add:star|add:'.png' as star_static %}
+                <img src="{% static star_static %}"  />
+                {% endwith %}
             </td>
             {% endfor %}
         </tr>
     </table>
+
+    <br><br>
+    <form action="{% url 'feh:gacha_result' pool_name=pool%}" method="post" >
+        Number of Gachas: <input type="radio" name="number" value="1">1
+        <input type="radio" name="number" value="2">2
+        <input type="radio" name="number" value="3">3
+        <input type="radio" name="number" value="4">4
+        <input type="radio" checked="true" name="number" value="5">5
+        <input type="submit" value="try again!" name="pool_name">
+        {%csrf_token%}
+    </form>
+    <br>
+    <a href="{% url 'feh:index' %}">
+        <button>back to pools</button>
+    </a>
+
 
 </body>
 </html>
